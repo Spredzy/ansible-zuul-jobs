@@ -1308,3 +1308,18 @@
     unlabel-on-push:
       jobs:
         - noop
+
+- project-template:
+    name: ansible-awx-jobs
+    description: |
+      Set of jobs for the ansible/awx projects
+    third-party-check:
+      jobs:
+        - ansible-awx-api-lint
+        - ansible-awx-api
+        - ansible-awx-ui
+        - ansible-awx-ui-next
+        - ansible-awx-swagger
+        - ansible-awx-detect-schema-change:
+            voting: false
+        - ansible-awx-ansible-modules

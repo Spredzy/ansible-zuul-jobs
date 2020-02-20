@@ -1,0 +1,42 @@
+---
+- job:
+    name: ansible-awx-api-lint
+    parent: ansible-awx-tests
+    vars:
+      command: /venv/awx/bin/tox -e linters
+
+- job:
+    name: ansible-awx-api
+    parent: ansible-awx-tests
+    vars:
+      command: /start_tests.sh
+
+- job:
+    name: ansible-awx-ui
+    parent: ansible-awx-tests
+    vars:
+      command: make ui-zuul-lint-and-test
+
+- job:
+    name: ansible-awx-ui-next
+    parent: ansible-awx-tests
+    vars:
+      command: make ui-next-zuul-lint-and-test
+
+- job:
+    name: ansible-awx-swagger
+    parent: ansible-awx-tests
+    vars:
+      command: /start_tests.sh swagger
+
+- job:
+    name: ansible-awx-detect-schema-change
+    parent: ansible-awx-tests
+    vars:
+      command: /start_tests.sh detect-schema-change
+
+- job:
+    name: ansible-awx-ansible-modules
+    parent: ansible-awx-tests
+    vars:
+      command: /start_tests.sh test_collection_all
